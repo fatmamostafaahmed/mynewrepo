@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #tank,#tank1,#abo_sen,#b6{height: 120px;width:150px;position:absolute;cursor: pointer;display: inline;}
+            #abo_krdan,#hamama,#asfour{height: 150px;width:150px;position:absolute;float: right;cursor: pointer;display: inline;}
+            #txt,#txt1{background-color: transparent;color: brown;font-size: 30px;padding-left: 30px;border-color:lightcoral;width: 50px;display: inline; }
+            #txtt{background-color: black;color: azure;font-size: 30px;padding-left: 30px;border-color: red;width: 60px;display: inline; }
+            #ch{visibility: hidden;text-align: center;background-color:crimson;height: 270px;width: 350px;}
+            a{color: black; font-size: 35px;cursor:pointer;height: 63px;width: 93px;padding: 10px;text-decoration: none;background-color: coral}
+            span{color: brown;font-size: 20px;}
+            #bodyy{background-image: url(bg.jpg); background-size: cover}
+        </style>
+        
+    </head>
+    <body  id="bodyy"  onload="startInt();getLocalStorage();">
+        <img id="tank" src="44.gif" onclick="hide(this);">
+        <br/><br/><br/>
+        <img id="b6"  src="6Bq3mWG.gif" onclick="hide(this);score+=20;"><br/><br/><br/>
+        <img id="abo_krdan"  src="1.gif" onclick="hide(this);score+=10;">
+        <br/><br/><br/>
+        <img id="abo_sen"  src="11.gif" onclick="hide(this);score+=20;">
+        <br/>
+        <img id="asfour"  src="2.gif" onclick="hide(this);score+=50;">
+        <br/><br/><br/>
+        <img id="tank1"  src="44.gif" onclick="hide(this);score+=10;">
+        <br/><br/> <img id="hamama"  src="3.gif" onclick="hide(this);score+=20;">
+           
+        <br/><center>
+        <div id="ch">
+            <form><h2>Time Out</h2><h2>Your score </h2><input type="text" id="txtt"  readonly/><br/><br/>
+            <center><a href="game.html" >play again</a></center> 
+            </form>
+        </div></center>
+        <br/>
+        <form><span>Time</span><input type="text" value="0" id="txt" readonly/>
+        <span>High score</span><input type="text" value="0" id="txt1" readonly  onchange="if(this.value=='-1') value='0';"/></form>
+        
+        <script>
+            //var con=new confirm("time out");
+            var score=0;
+            var c = 0;
+            var t;
+            function timedCount() {
+                document.getElementById('txt').value = c;
+                c = c + 1;
+                if(c>15){
+                        stopCount();
+                        var ch = document.getElementById('ch'),bb=document.getElementById('bodyy');
+                       
+                        //ch.focus();
+                        bb.style.opacity="0.4";
+                        ch.style.visibility="visible";
+                        document.getElementById('txtt').value=score;
+                        setLocalStorage();
+                        }
+            }
+            function startInt() {
+                
+                t = setInterval("timedCount()", 1000);
+            }
+
+            function stopCount() {
+                clearInterval(t);
+            }
+
+            var left = 0;          //المكان الللى هايبدا منه هو هايبدا من اقصى الشمال
+            var tank = document.getElementById('tank'); // حط ف المتغير ده ال اى دى بتاع الايمج اللى انتى هاتشتغل عليها
+            var abo_sen = document.getElementById('abo_sen'); 
+            var timerId = 0;
+
+            timerId = setInterval( function() { 
+            //This function is called by the browser every 33 milliseconds  setIntervalدى داله بتاخد اتنين براميتارز الاول الداله اللى هاتستدعيها بتكرار والتانى تستدعيها كل قد ايه بالميلى سيكند
+            if( left++ > 1200 ) {
+                //clearInterval( timerId ); //Stop the interval because left is > 200
+                left=0;
+                tank.style.visibility="visible";
+                abo_sen.style.visibility="visible";
+            }
+            tank.style.left = left + "px";
+            abo_sen.style.left = left + "px";
+            }, 5 );
+            
+            
+            var right = 0;         
+            var abo_kerdan = document.getElementById('abo_krdan'); 
+            var timerIdd = 0;
+
+            timerIdd = setInterval( function() { 
+            if( right++ > 1200 ) {
+                right=0;
+                abo_krdan.style.visibility="visible";
+            }
+                
+            abo_krdan.style.right = right + "px";
+            }, 5 );
+            
+            
+            var right1 = 0;         
+            var asfour = document.getElementById('asfour'); 
+            var timer = 0;
+            timer = setInterval( function() { 
+            if( right1++ > 1200 ) {
+                right1=0;
+                asfour.style.visibility="visible";
+            }
+            asfour.style.right = right1 + "px";
+            }, 2 );
+            
+            
+             
+            var right11 = 0;         
+            var hamama = document.getElementById('hamama'); 
+            var timer1 = 0;
+            timer1 = setInterval( function() { 
+            if( right11++ > 1200 ) {
+                right11=0;
+                hamama.style.visibility="visible";
+            }
+
+            hamama.style.right = right11 + "px";
+            }, 5 );
+            
+            
+            
+            var left1 = 0;          //المكان الللى هايبدا منه هو هايبدا من اقصى الشمال
+            var tank1 = document.getElementById('tank1'); // حط ف المتغير ده ال اى دى بتاع الايمج اللى انتى هاتشتغل عليها
+            var abo_sen1 = document.getElementById('b6'); 
+            var timerIdf = 0;
+
+            timerIdf = setInterval( function() { 
+            if( left1++ > 1200 ) {
+                left1=0;
+                 tank1.style.visibility="visible";  
+                 abo_sen1.style.visibility="visible";
+            }
+            tank1.style.left = left1 + "px";
+            abo_sen1.style.left = left1 + "px";
+            }, 7 );
+            
+            function hide(obj)
+            { 
+                var idd=obj.id;
+                var x = document.getElementById(idd);
+                 x.style.visibility="hidden";
+            }
+       
+            function getLocalStorage() 
+            {
+                if (localStorage.user ) 
+                {
+                    if(score>document.getElementById("txt1").value)
+                    document.getElementById("txt1").value=score;
+                    else
+                    document.getElementById("txt1").value=localStorage.user;
+                } 
+            }
+            function setLocalStorage()
+			{
+				if(typeof(Storage) !== "undefined") 
+				{
+                    if(score>localStorage.user)
+                    localStorage.user =score;
+				}
+			}
+        </script>
+    </body>
+</html>
